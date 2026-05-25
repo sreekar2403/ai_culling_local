@@ -249,10 +249,13 @@ export default function DashboardPage() {
           ) : (
             <div className="space-y-2">
               {sessions.map((session) => (
-                <button
+                <div
                   key={session.id}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => router.push(`/session/${session.id}`)}
-                  className="flex w-full items-center justify-between rounded-lg border border-gray-200 bg-white px-5 py-3 text-left hover:border-blue-200 hover:bg-blue-50/50 transition-all"
+                  onKeyDown={(e) => e.key === "Enter" && router.push(`/session/${session.id}`)}
+                  className="group flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white px-5 py-3 text-left hover:border-blue-200 hover:bg-blue-50/50 transition-all"
                 >
                   <div className="flex items-center gap-4">
                     <div className="text-sm font-medium text-gray-900">
@@ -273,16 +276,23 @@ export default function DashboardPage() {
                       {session.status}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
                     <span>{session.total_images} images</span>
                     {session.analysis_duration_ms && (
                       <span>
                         {(session.analysis_duration_ms / 1000).toFixed(1)}s
                       </span>
                     )}
-                    <ChevronRight className="h-4 w-4" />
+                    <button
+                      onClick={(e) => handleDeleteSession(e, session.id)}
+                      className="rounded-lg p-1.5 text-gray-300 opacity-0 transition-all hover:bg-red-50 hover:text-red-500 group-hover:opacity-100"
+                      title="Delete session"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                    <ChevronRight className="h-4 w-4 text-gray-300" />
                   </div>
-                </button>
+                </div>
               ))}
             </div>
           )}
