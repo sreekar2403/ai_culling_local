@@ -1,0 +1,24 @@
+{
+  "name": "ollama-photo-culler",
+  "version": "1.0.0",
+  "description": "A local, privacy-first web app that uses Ollama vision models to cull thousands of photos in minutes.",
+  "private": true,
+  "workspaces": [
+    "./frontend",
+    "./backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev:frontend\" \"npm:dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && uvicorn main:app --reload --port 8001",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "echo 'Backend ready for production'",
+    "start": "concurrently \"npm:start:frontend\" \"npm:start:backend\"",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && uvicorn main:app --port 8001"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,38 @@
+node_modules
+.playwright-mcp
+.next/
+frontend/.next/
+frontend/node_modules/
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+backend/.venv/
+venv/
+env/
+ENV/
+
+# Environment files
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project
+exports/
+thumbs/
